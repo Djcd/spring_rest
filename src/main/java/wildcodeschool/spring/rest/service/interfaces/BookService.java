@@ -10,4 +10,5 @@ public interface BookService {
     BookData updateBook(BookData bookData);
     List<BookData> getAllBooks();
     BookData getBookById(final Long bookId);
+    List<BookData> findBooks(String search);
 }

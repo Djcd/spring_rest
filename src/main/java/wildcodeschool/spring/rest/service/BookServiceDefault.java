@@ -52,6 +52,14 @@ public class BookServiceDefault implements BookService {
             return populateBookData(book);
     }
 
+    @Override
+    public List<BookData> findBooks(String searchTerm) {
+        List<BookData> books;
+        List<Book> BookList = repository.findAllByTitleContainingOrAuthorContainingOrDescriptionContaining(searchTerm, searchTerm, searchTerm);
+        books = BookList.stream().map(this::populateBookData).collect(Collectors.toList());
+        return books;
+    }
+
     private BookData populateBookData(final Book book){
         return new BookData(book.getId(), book.getTitle(), book.getAuthor(), book.getDescription());
     }

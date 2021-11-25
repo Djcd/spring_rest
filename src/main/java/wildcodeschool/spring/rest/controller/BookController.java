@@ -8,6 +8,7 @@ import wildcodeschool.spring.rest.service.BookServiceDefault;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/book")
@@ -29,6 +30,11 @@ public class BookController {
     @PostMapping
     public BookData saveBook(@RequestBody BookData book) {
         return bookService.saveBook(book);
+    }
+
+    @GetMapping("/search/{searchTerm}")
+    public List<BookData> search(@PathVariable String searchTerm){
+        return bookService.findBooks(searchTerm);
     }
 
     @PutMapping
